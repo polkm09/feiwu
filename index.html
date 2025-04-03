@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飞屋设计 - 拒绝样板间人生，让家开口说你的故事</title>
+    <meta name="description" content="飞屋设计是一家专注于住宅的创新室内设计公司，以生活方式设计为核心，为你打造真正懂你、好用又好看的家。">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Preline UI -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/preline@2.0.3/dist/preline.min.css" />
+    <!-- 字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&family=Montserrat:wght@400;500;600;700&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            "50": "#f1fafd",
+                            "100": "#d7f0f9",
+                            "200": "#bae3f2",
+                            "300": "#8fd2eb",
+                            "400": "#49bbe4",
+                            "500": "#1aabe0",
+                            "600": "#108ab7",
+                            "700": "#097ba4",
+                            "800": "#046386",
+                            "900": "#03465e"
+                        },
+                        secondary: {
+                            "50": "#fbebe6",
+                            "100": "#f6d8cd",
+                            "200": "#eec1b1",
+                            "300": "#e4a087",
+                            "400": "#dc6c43",
+                            "500": "#cd4e1f",
+                            "600": "#a53b14",
+                            "700": "#93310d",
+                            "800": "#752507",
+                            "900": "#4e1905"
+                        },
+                        neutral: {
+                            "50": "#ffffff",
+                            "100": "#ffffff",
+                            "200": "#ffffff",
+                            "300": "#ffffff",
+                            "400": "#f2f3f3",
+                            "500": "#d5d9dd",
+                            "600": "#b6c0c9",
+                            "700": "#a3b3c2",
+                            "800": "#89a1b9",
+                            "900": "#6f8caa"
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Merriweather', 'Georgia', 'serif'],
+                        mono: ['Fira Code', 'monospace'],
+                        display: ['Montserrat', 'system-ui', 'sans-serif'],
+                        handwriting: ['Caveat', 'cursive'],
+                    },
+                    borderRadius: {
+                        DEFAULT: '4px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 基础样式 */
+        :root {
+            --font-family-heading: 'Fira Code', monospace;
+            --font-family-body: 'Merriweather', Georgia, serif;
+            --font-size-base: 16px;
+            --line-height: 1.5;
+        }
+        
+        /* 自定义样式 */
+        .heading {
+            font-family: var(--font-family-heading);
+            font-weight: 700;
+        }
+        
+        .body-text {
+            font-family: var(--font-family-body);
+        }
+        
+        /* 平滑过渡 */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 深色模式 */
+        .dark {
+            --bg-primary: #046386;
+            --text-primary: #ffffff;
+        }
+        
+        /* 视频容器 */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 比例 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* 图片悬停效果 */
+        .img-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .img-hover:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        /* 按钮悬停效果 */
+        .btn-hover {
+            transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .btn-hover:hover {
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+
+<body class="bg-neutral-50 dark:bg-gray-900 text-gray-800 dark:text-neutral-100">
+    <!-- 导航栏 -->
+    <header class="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-md">
+        <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="#" class="flex items-center">
+                    <i class="fa-solid fa-house-chimney text-primary-600 text-2xl mr-2"></i>
+                    <span class="heading text-xl font-bold text-primary-700 dark:text-primary-300">飞屋设计</span>
+                </a>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="font-mono text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">关于我们</a>
+                <a href="#difference" class="font-mono text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">我们的不同</a>
+                <a href="#case" class="font-mono text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">案例展示</a>
+                <a href="#pricing" class="font-mono text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">服务费用</a>
+                <a href="#contact" class="font-mono text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">联系我们</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none">
+                    <i class="fa-solid fa-moon dark:hidden"></i>
+                    <i class="fa-solid fa-sun hidden dark:block"></i>
+                </button>
+                
+                <button class="md:hidden p-2" id="mobile-menu-button">
+                    <i class="fa-solid fa-bars text-gray-700 dark:text-gray-300 text-xl"></i>
+                </button>
+                
+                <a href="#contact" class="hidden md:block btn-hover bg-primary-600 hover:bg-primary-700 text-white font-mono py-2 px-4 rounded">
+                    预约咨询
+                </a>
+            </div>
+        </nav>
+        
+        <!-- 移动端菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="container mx-auto px-4 py-3 space-y-3">
+                <a href="#about" class="block font-mono text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors py-2">关于我们</a>
+                <a href="#difference" class="block font-mono text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors py-2">我们的不同</a>
+                <a href="#case" class="block font-mono text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors py-2">案例展示</a>
+                <a href="#pricing" class="block font-mono text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors py-2">服务费用</a>
+                <a href="#contact" class="block font-mono text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors py-2">联系我们</a>
+                <a href="#contact" class="block btn-hover bg-primary-600 hover:bg-primary-700 text-white font-mono py-2 px-4 rounded text-center">
+                    预约咨询
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="relative bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900 dark:to-primary-800 py-16 md:py-24">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="max-w-4xl mx-auto text-center fade-in">
+                <h1 class="heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary-800 dark:text-primary-100 mb-6">
+                    拒绝样板间人生<br>让家开口说你的故事
+                </h1>
+                <p class="body-text text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
+                    第一次装修？兴奋又迷茫？飞屋帮你把"家"装对。<br>
+                    我们不只是设计房子，更是为你"打造专属生活方式"。
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#about" class="btn-hover bg-primary-600 hover:bg-primary-700 text-white font-mono py-3 px-6 rounded-md text-lg">
+                        了解更多
+                    </a>
+                    <a href="#case" class="btn-hover bg-white dark:bg-gray-800 text-primary-700 dark:text-primary-300 border border-primary-600 dark:border-primary-400 font-mono py-3 px-6 rounded-md text-lg">
+                        查看案例
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 装饰元素 -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" class="w-full h-auto">
+                <path fill="#ffffff" fill-opacity="1" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" class="dark:fill-gray-900"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="py-16 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="heading text-2xl md:text-3xl font-bold text-primary-700 dark:text-primary-300 mb-4">
+                        终于要装修自己的第一个家了？
+                    </h2>
+                    <p class="body-text text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                        是不是既充满期待，又有点手足无措？网上攻略看得眼花缭乱，各种风格选择困难，担心预算超支，更怕的是，花了大钱、费了大力气，最后装出来的家却不实用、住得不舒服？
+                    </p>
+                </div>
+                
+                <div class="bg-neutral-50 dark:bg-gray-800 rounded-lg p-6 shadow-md mb-12 fade-in">
+                    <p class="body-text text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                        你不是一个人有这种顾虑。第一次装修，我们都想一步到位，但现实是，很多人入住后才发现：<span class="text-secondary-600 dark:text-secondary-400 font-semibold">"插座不够用"</span>、<span class="text-secondary-600 dark:text-secondary-400 font-semibold">"收纳空间太少"</span>、<span class="text-secondary-600 dark:text-secondary-400 font-semibold">"当初为什么这么设计？"</span>……
+                    </p>
+                    <p class="body-text text-lg text-gray-700 dark:text-gray-300 mt-4 leading-relaxed">
+                        调查显示，<span class="font-semibold">超过85%的业主在装修后发现家里至少有3处设计不符合实际生活需求</span>。这往往是因为传统装修更关注房子本身"看起来怎么样"，而忽略了住在里面"你"的真实生活感受和习惯。
+                    </p>
+                </div>
+                
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="heading text-2xl md:text-3xl font-bold text-primary-700 dark:text-primary-300 mb-4">
+                        我们是飞屋设计：生活方式设计的开创者
+                    </h2>
+                    <p class="body-text text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                        飞屋设计是一家专注于住宅的创新室内设计公司。我们不只是设计房子，更是为你"打造你的专属生活方式"。我们相信，家是生活的容器，设计应该围绕"人"展开，提升你每一天的生活品质。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 我们的不同 -->
+    <section id="difference" class="py-16 bg-primary-50 dark:bg-gray-800">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="heading text-2xl md:text-3xl font-bold text-primary-700 dark:text-primary-300 mb-4">
+                        我们与传统设计有何不同？
+                    </h2>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8 mb-16">
+                    <!-- 焦点不同 -->
+                    <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow fade-in">
+                        <div class="text-primary-600 dark:text-primary-400 mb-4">
+                            <i class="fa-solid fa-bullseye text-4xl"></i>
+                        </div>
+                        <h3 class="heading text-xl font-bold text-primary-700 dark:text-primary-300 mb-3">
+                            焦点不同
+                        </h3>
+                        <p class="body-text text-gray-700 dark:text-gray-300">
+                            传统设计以"空间"（客厅、卧室）为中心，强调视觉效果。飞屋设计以"人"为中心，关注你的"生活场景"（如阅读、社交、休息、工作等）。我们设计的是你的生活体验，而不仅仅是物理空间。
+                        </p>
+                    </div>
+                    
+                    <!-- 方法不同 -->
+                    <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow fade-in">
+                        <div class="text-primary-600 dark:text-primary-400 mb-4">
+                            <i class="fa-solid fa-magnifying-glass-chart text-4xl"></i>
+                        </div>
+                        <h3 class="heading text-xl font-bold text-primary-700 dark:text-primary-300 mb-3">
+                            方法不同
+                        </h3>
+                        <p class="body-text text-gray-700 dark:text-gray-300">
+                            传统设计往往在装修后才发现问题。飞屋设计在设计开始前，会进行深入的调研，全面了解你的生活习惯、需求、甚至你可能都没意识到的偏好。我们通过"用户场景地图"和"空间服务地图"等工具，分析你的每一个生活场景，确保设计方案精准解决你的问题。
+                        </p>
+                    </div>
+                    
+                    <!-- 团队不同 -->
+                    <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow fade-in">
+                        <div class="text-primary-600 dark:text-primary-400 mb-4">
+                            <i class="fa-solid fa-people-group text-4xl"></i>
+                        </div>
+                        <h3 class="heading text-xl font-bold text-primary-700 dark:text-primary-300 mb-3">
+                            团队不同
+                        </h3>
+                        <p class="body-text text-gray-700 dark:text-gray-300">
+                            传统设计常常依赖设计师单打独斗。飞屋独创"四角色专业团队协作"模式。每个项目都由四位专家协同完成。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 四角色团队 -->
+                <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-md mb-12 fade-in">
+                    <h3 class="heading text-xl font-bold text-primary-700 dark:text-primary-300 mb-4 text-center">
+                        飞屋独创"四角色专业团队协作"模式
+                    </h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="flex items-start">
+                            <div class="bg-primary-100 dark:bg-primary-800 rounded-full p-3 mr-4">
+                                <i class="fa-solid fa-puzzle-piece text-primary-600 dark:text-primary-300"></i>
+                            </div>
+                            <div>
+                                <h4 class="heading font-bold text-gray-800 dark:text-gray-200 mb-1">好用设计师</h4>
+                                <p class="body-text text-gray-700 dark:text-gray-300">负责空间规划和功能布局，确保动线流畅、空间实用。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary-100 dark:bg-primary-800 rounded-full p-3 mr-4">
+                                <i class="fa-solid fa-palette text-primary-600 dark:text-primary-300"></i>
+                            </div>
+                            <div>
+                                <h4 class="heading font-bold text-gray-800 dark:text-gray-200 mb-1">好看设计师</h4>
+                                <p class="body-text text-gray-700 dark:text-gray-300">在实用基础上，负责视觉美学、氛围营造，让家符合你的审美和情感需求。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary-100 dark:bg-primary-800 rounded-full p-3 mr-4">
+                                <i class="fa-solid fa-screwdriver-wrench text-primary-600 dark:text-primary-300"></i>
+                            </div>
+                            <div>
+                                <h4 class="heading font-bold text-gray-800 dark:text-gray-200 mb-1">工程师</h4>
+                                <p class="body-text text-gray-700 dark:text-gray-300">负责将设计图纸精准落地，对接施工，把控工程质量和进度。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary-100 dark:bg-primary-800 rounded-full p-3 mr-4">
+                                <i class="fa-solid fa-headset text-primary-600 dark:text-primary-300"></i>
+                            </div>
+                            <div>
+                                <h4 class="heading font-bold text-gray-800 dark:text-gray-200 mb-1">运营专家</h4>
+                                <p class="body-text text-gray-700 dark:text-gray-300">作为你的专属向导和沟通桥梁，全程陪伴，解决你的疑问，协调各方工作，保障服务体验。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 飞屋能为你带来什么 -->
+                <div class="mb-12 fade-in">
+                    <h3 class="heading text-2xl font-bold text-primary-700 dark:text-primary-300 mb-6 text-center">
+                        飞屋能为你带来什么？
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-primary-100 dark:bg-primary-800 rounded-full p-2 mr-3">
+                                    <i class="fa-solid fa-fingerprint text-primary-600 dark:text-primary-300"></i>
+                                </div>
+                                <h4 class="heading font-bold text-gray-800 dark:text-gray-200">真正个性化的家</h4>
+                            </div>
+                            <p class="body-text text-gray-700 dark:text-gray-300">
+                                设计不再是复制粘贴，而是根据你的独特生活方式量身定制。可能是一个让你放松的"15分钟冥想角落"，或是一个让早晨准备时间从25分钟缩短到10分钟的高效收纳系统。
+                            </p>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-primary-100 dark:bg-primary-800 rounded-full p-2 mr-3">
+                                    <i class="fa-solid fa-lightbulb text-primary-600 dark:text-primary-300"></i>
+                                </div>
+                                <h4 class="heading font-bold text-gray-800 dark:text-gray-200">解决实际生活痛点</h4>
+                            </div>
+                            <p class="body-text text-gray-700 dark:text-gray-300">
+                                无论是小户型显大、增加收纳空间、在家开辟舒适的办公区、优化家务动线（如洗衣区设计），还是促进家人互动（如开放式厨房），我们都致力于通过设计提供最佳解决方案。
+                            </p>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-primary-100 dark:bg-primary-800 rounded-full p-2 mr-3">
+                                    <i class="fa-solid fa-star text-primary-600 dark:text-primary-300"></i>
+                                </div>
+                                <h4 class="heading font-bold text-gray-800 dark:text-gray-200">超预期的居住体验</h4>
+                            </div>
+                            <p class="body-text text-gray-700 dark:text-gray-300">
+                                我们不仅满足你提出的需求，更通过专业分析，挖掘你潜在的"真需求"，提供让你惊喜的方案。让你觉得我们"比你自己还懂你"。搬进新家后，你会感受到每个空间都恰到好处，即使家不大，也能住得舒适自在，更好地平衡工作与生活。
+                            </p>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-primary-100 dark:bg-primary-800 rounded-full p-2 mr-3">
+                                    <i class="fa-solid fa-shield-heart text-primary-600 dark:text-primary-300"></i>
+                                </div>
+                                <h4 class="heading font-bold text-gray-800 dark:text-gray-200">省心无忧的过程</h4>
+                            </div>
+                            <p class="body-text text-gray-700 dark:text-gray-300">
+                                我们提供全程"托底服务"，从前期调研到最终入住，为你打理好装修中的繁琐事务，减少你的时间成本和焦虑。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 案例展示 -->
+    <section id="case" class="py-16 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="heading text-2xl md:text-3xl font-bold text-primary-700 dark:text-primary-300 mb-4">
+                        我们的案例
+                    </h2>
+                    <p class="body-text text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                        当"生活方式设计"遇见真实的家
+                    </p>
+                </div>
+                
+                <!-- 客户背景与初步困扰 -->
+                <div class="mb-16 fade-in">
+                    <h3 class="heading text-xl font-bold text-primary-700 dark:text-primary-300 mb-6 flex items-center">
+                        <span class="bg-primary-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">1</span>
+                        客户背景与初步困扰
+                    </h3>
+                    
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md mb-8">
+                        <h4 class="heading font-bold text-gray-800 dark:text-gray-200 mb-3">"人"是谁？</h4>
+                        <p class="body-text text-gray-700 dark:text-gray-300 mb-4">
+                            E先生和L女士，他们原居住在一个比较小的房子里。E先生是一名需要偶尔在家学习、办公的自由工作者，L女士在知名大超市工作，她喜欢很多不同的户外运动。
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+                        <h4 class="heading font-bold text-gray-800 dark:text-gray-200 mb-3">生活中的"痛点"是什么？</h4>
+                        
+                        <div class="space-y-4">
+                            <div class="flex">
+                                <div class="bg-secondary-100 dark:bg-secondary-900 rounded-full p-2 mr-3 h-min mt-1">
+                                    <span class="text-secondary-600 dark:text-secondary-300 font-bold">1</span>
+                                </div>
+                                <div>
+                                    <h5 class="heading font-semibold text-gray-800 dark:text-gray-200 mb-1">场景一：书房如同"小黑屋"</h5>
+                                    <p class="body-text text-gray-700 dark:text-gray-300">
+                                        E先生在原来房子的书房学习时，感觉与家人和外面的世界隔绝开来，无法感知到家人的活动或环境的变化。
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex">
+                                <div class="bg-secondary-100 dark:bg-secondary-900 rounded-full p-2 mr-3 h-min mt-1">
+                                    <span class="text-secondary-600 dark:text-secondary-300 font-bold">2</span>
+                                </div>
+                                <div>
+                                    <h5 class="heading font-semibold text-gray-800 dark:text-gray-200 mb-1">场景二：杂物"占领"全屋</h5>
+                                    <p class="body-text text-gray-700 dark:text-gray-300">
+                                        L女士因为工作习惯会囤积不少生活用品，再加上爱好户外运动，家里堆了不少装备。东西零散又没足够地方收纳，导致家里角角落落都被各种物品占据了空间。
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex">
+                                <div class="bg-secondary-100 dark:bg-secondary-900 rounded-full p-2 mr-3 h-min mt-1">
+                                    <span class="text-secondary-600 dark:text-secondary-300 font-bold">3</span>
+                                </div>
+                                <div>
+                                    <h5 class="heading font-semibold text-gray-800 dark:text-gray-200 mb-1">场景三：夜晚上厕所不方便</h5>
+                                    <p class="body-text text-gray-700 dark:text-gray-300">
+                                        因为房子本身的结构问题，每次去洗手间都要在一个挺小的空间里上下台阶，尤其是晚上起夜，还得特别留神脚下的台阶，很不方便。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 p-4 bg-primary-50 dark:bg-primary-900 rounded-md">
+                            <p class="body-text text-gray-700 dark:text-gray-300">
+                                <span class="font-semibold">潜在需求：</span>他们想要一个整洁、有条理的家，既能把所有东西都好好收起来，又能留出足够的空间，让他们能更多地感受到彼此的存在，也能更好地与家这个环境互动。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 飞屋的"诊断"与设计思路 -->
+                <div class="mb-16 fade-in">
+                    <h3 class="heading text-xl font-bold text-primary-700 dark:text-primary-300 mb-6 flex items-center">
+                        <span class="bg-primary-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">2</span>
+                        飞屋的"诊断"与设计思路
+                    </h3>
+                    
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md mb-8">
+                        <h4 class="heading font-bold text-gray-800 dark:text-gray-200 mb-3">深入调研，挖掘"真需求"</h4>
+                        <p class="body-text text-gray-700 dark:text-gray-300">
+                            我们没有直接问"你想要什么风格？"，而是通过详细的《生活方式调研问卷》和上门访谈，绘制了E先生一家的"用户场景地图"。我们观察了他们晨间的节奏、E先生的工作状态、L女士的休闲爱好以及居家时他们之间的互动模式。
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+                        <h4 class="heading font-bold text-gray-800 dark:text-gray-200 mb-3">"四角色团队"协同发力</h4>
+                        
+                        <div class="space-y-6">
+                            <div class="flex">
+                                <div class="bg-primary-100 dark:bg-primary-800 rounded-full p-2 mr-3 h-min mt-1">
+                                    <i class="fa-solid fa-puzzle-piece text-primary-600 dark:text-primary-300"></i>
+                                </div>
+                                <div>
+                                    <h5 class="heading font-semibold text-gray-800 dark:text-gray-200 mb-1">好用设计师</h5>
+                                    <p class="body-text text-gray-700 dark:text-gray-300">
+                                        聚焦空间布局和功能。识别出"各个场景下他们之间的互动、"独立且半开放工作区"、"集中式收纳区"、"场景动线优化"是核心需求。重新规划了空间，比如次卧与厨房之间打开小窗口让外面的风穿过两个空间，将储物收纳集中在客厅侧边的多功能整合柜中，让客厅有更多的空间容纳更多生活场景。
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex">
+                                <div class="bg-primary-100 dark:bg-primary-800 rounded-full p-2 mr-3 h-min mt-1">
+                                    <i class="fa-solid fa-palette text-primary-600 dark:text-primary-300"></i>
+                                </div>
+                                <div>
+                                    <h5 class="heading font-semibold text-gray-800 dark:text-gray-200 mb-1">好看设计师</h5>
+                                    <p class="body-text text-gray-700 dark:text-gray-300">
+                                        在确保功能基础上，根据一家人的喜好(比如喜欢原木、自然的感觉)，营造了温馨、明亮、有感知交互又不显复杂的整体氛围。色彩搭配、灯光设计都服务于"放松"、"活力"等不同场景的情绪需求。
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex">
+                                <div class="bg-primary-100 dark:bg-primary-800 rounded-full p-2 mr-3 h-min mt-1">
+                                    <i class="fa-solid fa-screwdriver-wrench text-primary-600 dark:text-primary-300"></i>
+                                </div>
+                                <div>
+                                    <h5 class="heading font-semibold text-gray-800 dark:text-gray-200 mb-1">工程师</h5>
+                                    <p class="body-text text-gray-700 dark:text-gray-300">
+                                        评估所有设计方案的可行性，比如承重墙、水电改造等，确保定制柜体的尺寸精准、材质环保耐用，并对接施工方，保证设计落地。
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex">
+                                <div class="bg-primary-100 dark:bg-primary-800 rounded-full p-2 mr-3 h-min mt-1">
+                                    <i class="fa-solid fa-headset text-primary-600 dark:text-primary-300"></i>
+                                </div>
+                                <div>
+                                    <h5 class="heading font-semibold text-gray-800 dark:text-gray-200 mb-1">运营专家</h5>
+                                    <p class="body-text text-gray-700 dark:text-gray-300">
+                                        全程与E先生L女士一家保持沟通，解释设计理念，反馈进度，协调解决施工中遇到的问题，让客户完全省心。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 解决方案亮点 -->
+                <div class="mb-16 fade-in">
+                    <h3 class="heading text-xl font-bold text-primary-700 dark:text-primary-300 mb-6 flex items-center">
+                        <span class="bg-primary-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">3</span>
+                        解决方案亮点
+                    </h3>
+                    
+                    <div class="space-y-12">
+                        <!-- "看得见的陪伴"空间连接 -->
+                        <div>
+                            <h4 class="heading font-bold text-gray-800 dark:text-gray-200 mb-4 text-center">
+                                "看得见的陪伴"空间连接
+                            </h4>
+                            <p class="body-text text-gray-700 dark:text-gray-300 mb-6">
+                                我们在书房和厨房操作台之间开了个窗户，书房和客厅之间，用了透明玻璃隔断，还藏了扇门。这样，就算先生在书房学习，太太在厨房忙或者在客厅休息，俩人都能直接或间接地感觉到对方在干嘛。而且，自然风和光线也能在家里面更好地流通，把这几个空间串联起来。
+                            </p>
+                            
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="overflow-hidden rounded-lg shadow-md">
+                                    <img src="https://i.postimg.cc/Bbdnc6R0/20250402-151816.jpg" alt="看得见的陪伴空间连接" class="w-full h-auto img-hover">
+                                </div>
+                                <div class="overflow-hidden rounded-lg shadow-md">
+                                    <img src="https://i.postimg.cc/L5qs1fCD/20250402-160436.jpg" alt="看得见的陪伴空间连接" class="w-full h-auto img-hover">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- "一柜三用"的超级收纳柜 -->
+                        <div>
+                            <h4 class="heading font-bold text-gray-800 dark:text-gray-200 mb-4 text-center">
+                                "一柜三用"的超级收纳柜
+                            </h4>
+                            <p class="body-text text-gray-700 dark:text-gray-300 mb-6">
+                                我们在玄关、客厅和洗手台的交汇区域设计了一个整体的大柜子。这个柜子的每一面都对着一个空间，专门收纳那个空间需要放的东西：比如玄关这边，就放鞋子、运动用品、大件行李和五金工具；客厅这边，做成了开放的书架和陈列架，也用来收纳设备、电线和常用工具；靠近洗手间的那面，就用来放穿过一两次还不用洗的衣服（次净衣）和家里囤的日用品。这样做的好处是，收纳都集中到这一个大柜子里，但内部又分得很清楚，让家里的整体感更强，也不会让柜子零散地占据太多你活动的地方，把更多空间留给人与人之间的相处。
+                            </p>
+                            
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="overflow-hidden rounded-lg shadow-md">
+                                    <img src="https://i.postimg.cc/1ts6wWwH/20250402-142009.jpg" alt="一柜三用的超级收纳柜" class="w-full h-auto img-hover">
+                                </div>
+                                <div class="overflow-hidden rounded-lg shadow-md">
+                                    <img src="https://i.postimg.cc/Pq4NsdvW/20250402-142017.jpg" alt="一柜三用的超级收纳柜" class="w-full h-auto img-hover">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- "会发光"的安全小台阶 -->
+                        <div>
+                            <h4 class="heading font-bold text-gray-800 dark:text-gray-200 mb-4 text-center">
+                                "会发光"的安全小台阶
+                            </h4>
+                            <p class="body-text text-gray-700 dark:text-gray-300 mb-6">
+                                对于房子本身结构上有的那个台阶，我们把它挪到了走道拐弯这种流线上比较自然的位置。这样一来，它就成了一个有意识划分区域的界限。同时，我们在台阶下面装了灯带，一方面是提醒你这里有台阶，注意脚下，另一方面晚上起夜的时候，它也能提供一个比较低的照明，不刺眼。这样处理之后，整个走动路线在空间里的过渡就显得很自然了。
+                            </p>
+                            
+                            <div class="overflow-hidden rounded-lg shadow-md max-w-md mx-auto">
+                                <img src="https://i.postimg.cc/PJKMPg7Y/20250402-141956.jpg" alt="会发光的安全小台阶" class="w-full h-auto img-hover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 案例实景图 -->
+                <div class="mb-16 fade-in">
+                    <h3 class="heading text-xl font-bold text-primary-700 dark:text-primary-300 mb-6 flex items-center">
+                        <span class="bg-primary-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">4</span>
+                        案例实景图
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="overflow-hidden rounded-lg shadow-md">
+                            <img src="https://i.postimg.cc/76BWRt1H/Chill-4-FEIWU.jpg" alt="实景图" class="w-full h-64 object-cover img-hover">
+                        </div>
+                        <div class="overflow-hidden rounded-lg shadow-md">
+                            <img src="https://i.postimg.cc/nc9PdkXx/Chill-3-FEIWU.jpg" alt="实景图" class="w-full h-64 object-cover img-hover">
+                        </div>
+                        <div class="overflow-hidden rounded-lg shadow-md">
+                            <img src="https://i.postimg.cc/mrkXHyfK/Chill-8-FEIWU.jpg" alt="实景图" class="w-full h-64 object-cover img-hover">
+                        </div>
+                        <div class="overflow-hidden rounded-lg shadow-md">
+                            <img src="https://i.postimg.cc/7hGmWHY9/Chill-2-FEIWU.jpg" alt="实景图" class="w-full h-64 object-cover img-hover">
+                        </div>
+                        <div class="overflow-hidden rounded-lg shadow-md">
+                            <img src="https://i.postimg.cc/CKMy68y4/Chill-1-FEIWU.jpg" alt="实景图" class="w-full h-64 object-cover img-hover">
+                        </div>
+                        <div class="overflow-hidden rounded-lg shadow-md">
+                            <img src="https://i.postimg.cc/Y9j5twCG/Chill-6-FEIWU.jpg" alt="实景图" class="w-full h-64 object-cover img-hover">
+                        </div>
+                        <div class="overflow-hidden rounded-lg shadow-md">
+                            <img src="https://i.postimg.cc/0Q3LQHzt/Chill-7-FEIWU.jpg" alt="实景图" class="w-full h-64 object-cover img-hover">
+                        </div>
+                        <div class="overflow-hidden rounded-lg shadow-md">
+                            <img src="https://i.postimg.cc/T1gHP2Mw/Chill-5-FEIWU.jpg" alt="实景图" class="w-full h-64 object-cover img-hover">
+                        </div>
+                        <div class="overflow-hidden rounded-lg shadow-md">
+                            <img src="https://i.postimg.cc/DfXN66JT/Chill-9-FEIWU.jpg" alt="实景图" class="w-full h-64 object-cover img-hover">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 客户反馈与生活改变 -->
+                <div class="mb-16 fade-in">
+                    <h3 class="heading text-xl font-bold text-primary-700 dark:text-primary-300 mb-6 flex items-center">
+                        <span class="bg-primary-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">5</span>
+                        客户反馈与生活改变
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+                            <div class="flex items-start">
+                                <div class="text-primary-600 dark:text-primary-400 mr-4">
+                                    <i class="fa-solid fa-quote-left text-3xl"></i>
+                                </div>
+                                <div>
+                                    <p class="body-text text-gray-700 dark:text-gray-300 italic mb-3">
+                                        "说实话，客厅和厨房打通了之后，这块地方我们用得最多，吃饭、朋友来玩、平时待着都行，一个空间多种用法，那个厨房岛台也确实方便。"
+                                    </p>
+                                    <p class="font-semibold text-right">— E先生</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+                            <div class="flex items-start">
+                                <div class="text-primary-600 dark:text-primary-400 mr-4">
+                                    <i class="fa-solid fa-quote-left text-3xl"></i>
+                                </div>
+                                <div>
+                                    <p class="body-text text-gray-700 dark:text-gray-300 italic mb-3">
+                                        "你们做的那个储物空间，特别是门口那个大柜子，设计得确实挺好的，很能装。把洗手台挪出来虽然少见，但也解决了浴缸的问题。现在家里的东西基本都能收进去，连我的行李箱都有地方放了，确实够用，不用再另外买柜子了。"
+                                    </p>
+                                    <p class="font-semibold text-right">— L女士</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+                            <div class="flex items-start">
+                                <div class="text-primary-600 dark:text-primary-400 mr-4">
+                                    <i class="fa-solid fa-quote-left text-3xl"></i>
+                                </div>
+                                <div>
+                                    <p class="body-text text-gray-700 dark:text-gray-300 italic mb-3">
+                                        "那个台阶下面的灯带，真是没想到！一开始可能还觉得没啥必要，但现在用起来才发现太有用了！晚上走过去，正好到台阶那儿灯就亮了，特别自然，脚往哪抬心里有数，都不用摸黑开灯了。这设计真的很好，解决了我们自己都没意识到的问题。"
+                                    </p>
+                                    <p class="font-semibold text-right">— E先生</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+                            <div class="flex items-start">
+                                <div class="text-primary-600 dark:text-primary-400 mr-4">
+                                    <i class="fa-solid fa-quote-left text-3xl"></i>
+                                </div>
+                                <div>
+                                    <p class="body-text text-gray-700 dark:text-gray-300 italic mb-3">
+                                        "搬到新家后很自然，没有需要改变原来的什么生活习惯，就很自然就适应了，又比原来住得更舒服。"
+                                    </p>
+                                    <p class="font-semibold text-right">— L女士</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 户型讲解视频 -->
+                <div class="mb-16 fade-in">
+                    <h3 class="heading text-xl font-bold text-primary-700 dark:text-primary-300 mb-6 text-center">
+                        深圳珑樾山2栋户型讲解
+                    </h3>
+                    
+                    <div class="space-y-8">
+                        <div>
+                            <h4 class="heading font-bold text-gray-800 dark:text-gray-200 mb-4">
+                                深圳珑樾山2栋A户型讲解
+                            </h4>
+                            <div class="video-container rounded-lg overflow-hidden shadow-lg">
+                                <iframe src="//player.bilibili.com/player.html?aid=114262269756315&bvid=BV1jaZhYvE4b&cid=29182985542&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="heading font-bold text-gray-800 dark:text-gray-200 mb-4">
+                                深圳珑樾山2栋B户型讲解
+                            </h4>
+                            <div class="video-container rounded-lg overflow-hidden shadow-lg">
+                                <iframe src="//player.bilibili.com/player.html?aid=114262303312680&bvid=BV1npZhYrEG3&cid=29183181000&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务费用 -->
+    <section id="pricing" class="py-16 bg-primary-50 dark:bg-gray-800">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="heading text-2xl md:text-3xl font-bold text-primary-700 dark:text-primary-300 mb-4">
+                        透明合理的收费
+                    </h2>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-900 rounded-lg p-8 shadow-md text-center fade-in">
+                    <div class="inline-block bg-primary-100 dark:bg-primary-800 rounded-full p-4 mb-6">
+                        <i class="fa-solid fa-tag text-4xl text-primary-600 dark:text-primary-300"></i>
+                    </div>
+                    <h3 class="heading text-2xl font-bold text-primary-700 dark:text-primary-300 mb-4">
+                        设计服务费
+                    </h3>
+                    <p class="text-4xl font-bold text-gray-800 dark:text-gray-200 mb-6">
+                        ¥30,000<span class="text-lg font-normal text-gray-600 dark:text-gray-400">/套</span>
+                    </p>
+                    <p class="body-text text-lg text-gray-700 dark:text-gray-300 mb-8">
+                        固定价格，不按面积收费，透明合理
+                    </p>
+                    <a href="#contact" class="btn-hover inline-block bg-primary-600 hover:bg-primary-700 text-white font-mono py-3 px-8 rounded-md text-lg">
+                        立即咨询
+                    </a>
+                </div>
+                
+                <div class="text-center mt-12 fade-in">
+                    <p class="body-text text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                        我们是飞屋，一家非常专注和专业的公司。我们坚信，生活方式设计是家装的未来趋势。我们致力于通过场景设计，点亮你的生活方式。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="py-16 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="heading text-2xl md:text-3xl font-bold text-primary-700 dark:text-primary-300 mb-4">
+                        联系我们
+                    </h2>
+                    <p class="body-text text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                        准备开始你的装修之旅？扫码添加我们的企业微信进行咨询
+                    </p>
+                </div>
+                
+                <div class="flex justify-center fade-in">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md max-w-xs">
+                        <img src="https://i.postimg.cc/PrWjF2wZ/SCR-20250402-oojj.jpg" alt="扫码加企业微信咨询" class="w-full h-auto rounded-md">
+                        <p class="text-center mt-4 text-gray-700 dark:text-gray-300 font-mono">
+                            扫码添加企业微信
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-16 grid md:grid-cols-3 gap-8 fade-in">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md text-center">
+                        <div class="inline-block bg-primary-100 dark:bg-primary-800 rounded-full p-4 mb-4">
+                            <i class="fa-solid fa-location-dot text-2xl text-primary-600 dark:text-primary-300"></i>
+                        </div>
+                        <h3 class="heading font-bold text-gray-800 dark:text-gray-200 mb-2">地址</h3>
+                        <p class="body-text text-gray-700 dark:text-gray-300">
+                            深圳宝安区玖悦雅轩商业裙楼瑞思空间-飞屋设计
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md text-center">
+                        <div class="inline-block bg-primary-100 dark:bg-primary-800 rounded-full p-4 mb-4">
+                            <i class="fa-solid fa-phone text-2xl text-primary-600 dark:text-primary-300"></i>
+                        </div>
+                        <h3 class="heading font-bold text-gray-800 dark:text-gray-200 mb-2">电话</h3>
+                        <p class="body-text text-gray-700 dark:text-gray-300">
+                            17724631620
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md text-center">
+                        <div class="inline-block bg-primary-100 dark:bg-primary-800 rounded-full p-4 mb-4">
+                            <i class="fa-solid fa-envelope text-2xl text-primary-600 dark:text-primary-300"></i>
+                        </div>
+                        <h3 class="heading font-bold text-gray-800 dark:text-gray-200 mb-2">邮箱</h3>
+                        <p class="body-text text-gray-700 dark:text-gray-300">
+                            service@feiwu.design
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                    <div class="flex items-center mb-6 md:mb-0">
+                        <i class="fa-solid fa-house-chimney text-primary-400 text-2xl mr-2"></i>
+                        <span class="heading text-xl font-bold text-white">飞屋设计</span>
+                    </div>
+                    
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fa-brands fa-weixin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fa-brands fa-weibo text-xl"></i>
+                        </a>
+                        <a href="https://twitter.com/feiwudesign" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fa-brands fa-x-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors">
+                            <i class="fa-brands fa-bilibili text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                    
+                    <div class="text-center text-gray-500 text-sm">
+                        <p class="mb-2">作者：飞屋设计团队</p>
+                        <p class="mb-2">
+                            <a href="https://twitter.com/feiwudesign" class="text-gray-500 hover:text-primary-400 transition-colors">Twitter/X: @feiwudesign</a>
+                        </p>
+                        <p>&copy; 2025 飞屋设计 版权所有</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 z-50">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- Preline UI JS -->
+    <script src="https://cdn.jsdelivr.net/npm/preline@2.0.3/dist/preline.min.js"></script>
+    
+    <!-- 自定义脚本 -->
+    <script>
+        // 移动端菜单切换
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 深色模式切换
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        // 检查系统偏好
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+        
+        // 滚动淡入效果
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('opacity-100');
+                    element.classList.remove('opacity-0', 'translate-y-4');
+                }
+            });
+        };
+        
+        // 初始化淡入元素
+        fadeElements.forEach(element => {
+            element.classList.add('opacity-0', 'translate-y-4', 'transition-all', 'duration-700');
+        });
+        
+        // 返回顶部按钮
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        const toggleBackToTopButton = () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100');
+            }
+        };
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 监听滚动事件
+        window.addEventListener('scroll', () => {
+            fadeInOnScroll();
+            toggleBackToTopButton();
+        });
+        
+        // 初始加载时触发一次
+        fadeInOnScroll();
+        toggleBackToTopButton();
+        
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // 关闭移动端菜单
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // 图片加载优化
+        document.addEventListener('DOMContentLoaded', () => {
+            const lazyImages = document.querySelectorAll('img');
+            
+            if ('loading' in HTMLImageElement.prototype) {
+                // 浏览器支持原生懒加载
+                lazyImages.forEach(img => {
+                    img.setAttribute('loading', 'lazy');
+                });
+            } else {
+                // 回退到 IntersectionObserver
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            observer.unobserve(img);
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
